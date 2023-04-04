@@ -3,7 +3,7 @@ import BackgroundImage from "./BackgroundImage";
 
 function Main() {
   return (
-    <div>
+    <div className="position: relative">
       Main
       <BackgroundImage />
     </div>
