@@ -6,7 +6,7 @@ export default function OpenAI() {
   const [keywordInput, setKeywordInput] = useState("");
   const [result, setResult] = useState();
 
-  async function onSubmit(event) {
+  async function onSubmit(event: any) {
     event.preventDefault();
     try {
       const response = await fetch("/api/generate", {
@@ -14,7 +14,7 @@ export default function OpenAI() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: keywordInput }),
+        body: JSON.stringify({ poem: keywordInput }),
       });
 
       const data = await response.json();
@@ -26,8 +26,8 @@ export default function OpenAI() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
-    } catch (error) {
+      setKeywordInput("");
+    } catch (error: any) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
@@ -53,12 +53,12 @@ export default function OpenAI() {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
+            name="poem"
             placeholder="Enter an keyword"
             value={keywordInput}
             onChange={(e) => setKeywordInput(e.target.value)}
           />
-          <input type="submit" value="Generate poetry" />
+          <input type="submit" value="Generate poem" />
         </form>
         <div className={styles.result}>{result}</div>
       </main>
