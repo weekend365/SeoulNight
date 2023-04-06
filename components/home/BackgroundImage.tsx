@@ -42,7 +42,7 @@ function BackgroundImage() {
             type="text"
             value={img}
             onChange={(event) => setImg(event.target.value)}
-            placeholder="키워드를 입력하세요."
+            placeholder="Enter an keyword"
           />
           <button type="submit" onClick={submit}>
             Search
