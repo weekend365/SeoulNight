@@ -1,12 +1,14 @@
 import React from "react";
 import BackgroundImage from "./BackgroundImage";
+import OpenAI from "./OpenAI";
 
 function Main() {
   return (
-    <div className="position: relative">
-      Main
+    <>
+      <div>Main</div>
+      <OpenAI />
       <BackgroundImage />
-    </div>
+    </>
   );
 }
 
