@@ -1,6 +1,10 @@
-import Head from "next/head";
 import { useState } from "react";
+import BackgroundImage from "./BackgroundImage";
 import styles from "./openAI.module.css";
+
+export type PropsType = {
+  keyword: string;
+};
 
 export default function OpenAI() {
   const [keywordInput, setKeywordInput] = useState("");
@@ -54,13 +58,14 @@ export default function OpenAI() {
           <input
             type="text"
             name="poem"
-            placeholder="Enter an keyword"
+            placeholder="Enter a keyword"
             value={keywordInput}
             onChange={(e) => setKeywordInput(e.target.value)}
           />
           <input type="submit" value="Generate poem" />
         </form>
         <div className={styles.result}>{result}</div>
+        <BackgroundImage keyword={keywordInput} />
       </main>
     </div>
   );

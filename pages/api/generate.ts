@@ -30,7 +30,11 @@ export default async function (req: any, res: any) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(poem),
-      temperature: 0.6,
+      temperature: 0.7,
+      max_tokens: 512,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error: any) {
@@ -51,6 +55,5 @@ export default async function (req: any, res: any) {
 
 function generatePrompt(poem: string) {
   const capitalizedPoem = poem[0].toUpperCase() + poem.slice(1).toLowerCase();
-  return `입력된 keyword에 어울리는 시를 만들어줘.
-Poem: ${capitalizedPoem}`;
+  return `Please make a poem that matches the ${capitalizedPoem} in Korean.`;
 }

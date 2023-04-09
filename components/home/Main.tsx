@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundImage from "./BackgroundImage";
 import OpenAI from "./OpenAI";
 
 function Main() {
@@ -7,7 +6,6 @@ function Main() {
     <>
       <div>Main</div>
       <OpenAI />
-      <BackgroundImage />
     </>
   );
 }

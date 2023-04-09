@@ -2,7 +2,11 @@ import { ACCESS_KEY } from "@/config";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-function BackgroundImage() {
+type PropsType = {
+  keyword: string;
+};
+
+function BackgroundImage({ keyword }: PropsType) {
   const [img, setImg] = useState("");
   const [res, setRes] = useState([]);
   const accessKey = ACCESS_KEY;
@@ -42,7 +46,7 @@ function BackgroundImage() {
             type="text"
             value={img}
             onChange={(event) => setImg(event.target.value)}
-            placeholder="Enter an keyword"
+            placeholder="Enter a keyword"
           />
           <button type="submit" onClick={submit}>
             Search
