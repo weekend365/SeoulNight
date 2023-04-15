@@ -6,14 +6,14 @@ export type PropsType = {
   keyword: string;
 };
 
-export default function OpenAI() {
+export default function Poem() {
   const [keywordInput, setKeywordInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event: any) {
     event.preventDefault();
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("/api/poemGenerate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,6 +30,7 @@ export default function OpenAI() {
       }
 
       setResult(data.result);
+      console.log(data.result);
       setKeywordInput("");
     } catch (error: any) {
       // Consider implementing your own error handling logic here
@@ -41,18 +42,6 @@ export default function OpenAI() {
   return (
     <div>
       <main className={styles.main}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="#E5E8B6"
-          className="w-6 h-6"
-        >
-          <path
-            fillRule="evenodd"
-            d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-            clipRule="evenodd"
-          />
-        </svg>
         <h3>SeoulNight</h3>
         <form onSubmit={onSubmit}>
           <input
@@ -65,7 +54,7 @@ export default function OpenAI() {
           <input type="submit" value="Generate poem" />
         </form>
         <div className={styles.result}>{result}</div>
-        <BackgroundImage keyword={keywordInput} />
+        <BackgroundImage props={keywordInput} />
       </main>
     </div>
   );

@@ -1,12 +1,13 @@
 import React from "react";
-import OpenAI from "./OpenAI";
+import OpenAI from "./Poem";
+import Poem from "./Poem";
 
 function Main() {
   return (
-    <>
+    <div>
       <div>Main</div>
-      <OpenAI />
-    </>
+      <Poem />
+    </div>
   );
 }
 

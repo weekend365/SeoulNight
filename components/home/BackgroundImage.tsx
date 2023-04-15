@@ -3,10 +3,10 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 type PropsType = {
-  keyword: string;
+  props: string;
 };
 
-function BackgroundImage({ keyword }: PropsType) {
+function BackgroundImage({ props }: PropsType) {
   const [img, setImg] = useState("");
   const [res, setRes] = useState([]);
   const accessKey = ACCESS_KEY;
@@ -21,13 +21,9 @@ function BackgroundImage({ keyword }: PropsType) {
   };
 
   useEffect(() => {
+    setImg(props);
     fetchRequest();
   }, []);
-
-  const submit = () => {
-    fetchRequest();
-    setImg("");
-  };
 
   interface resProps {
     id: string;
@@ -38,36 +34,20 @@ function BackgroundImage({ keyword }: PropsType) {
   }
 
   return (
-    <div>
-      <div>
-        <div>
-          <input
-            className="z-0"
-            type="text"
-            value={img}
-            onChange={(event) => setImg(event.target.value)}
-            placeholder="Enter a keyword"
-          />
-          <button type="submit" onClick={submit}>
-            Search
-          </button>
-        </div>
-        <div>
-          {res &&
-            res.map((value: resProps) => {
-              return (
-                <Image
-                  key={value.id}
-                  src={value.urls.full}
-                  alt={value.alt_description}
-                  fill
-                  className="z-10 opacity-0.5"
-                />
-              );
-            })}
-        </div>
-      </div>
-    </div>
+    <>
+      {res &&
+        res.map((value: resProps) => {
+          return (
+            <Image
+              key={value.id}
+              src={value.urls.full}
+              alt={value.alt_description}
+              fill
+              className="z-10 opacity-0.5"
+            />
+          );
+        })}
+    </>
   );
 }
 
